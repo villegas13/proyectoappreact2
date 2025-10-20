@@ -1,0 +1,2 @@
+## Pages
+- [Integra Textil ERP](/): Sistema ERP completo para la industria textil con módulos de producción, inventarios, costos y más.

@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Light theme colors */
+  --bg-primary: #E0E0E0; /* Changed to light grey */
+  --bg-secondary: #FFFFFF; /* Kept white for cards/forms */
+  --bg-sidebar: #FFFFFF;
+  --bg-tertiary: #F3F4F6;
+  --text-primary: #212121; /* Changed to dark grey */
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  --border: #E5E7EB;
+  --border-accent: #D1D5DB;
+  
+  --accent-blue: #64B5F6;   /* pastel blue */
+  --accent-orange: #FFB74D; /* pastel orange */
+  --accent-purple: #d8b4fe; /* purple-300 */
+  --accent-green: #81C784;  /* pastel green */
+  --accent-yellow: #fde047; /* yellow-300 */
+
+  --shadow-color: 220 20% 90%;
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05);
+
+  --accent-blue-light: #e0f2fe;
+  --accent-green-light: #dcfce7;
+  --accent-purple-light: #f5f3ff;
+  --accent-orange-light: #fff7ed;
+  --accent-yellow-light: #fefce8;
+
+  /* Gantt Task Colors */
+  --gantt-task-pending-bg: #e0f2fe;
+  --gantt-task-pending-border: #7dd3fc;
+  --gantt-task-pending-text: #0c4a6e;
+  --gantt-task-in-process-bg: #dcfce7;
+  --gantt-task-in-process-border: #86efac;
+  --gantt-task-in-process-text: #166534;
+  --gantt-task-finished-bg: #f3f4f6;
+  --gantt-task-finished-border: #d1d5db;
+  --gantt-task-finished-text: #4b5563;
+}
+
+[data-theme="dark"] {
+  /* Dark theme colors */
+  --bg-primary: #042863;
+  --bg-secondary: #0B3C8A;
+  --bg-sidebar: #042863;
+  --bg-tertiary: #1E3A8A;
+  --text-primary: #F9FAFB;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94a3b8;
+  --border: #1E3A8A;
+  --border-accent: #3B82F6;
+
+  --accent-blue: #3B82F6;
+  --accent-orange: #FB923C;
+  --accent-purple: #C4B5FD;
+  --accent-green: #4ADE80;
+  --accent-yellow: #FACC15;
+
+  --shadow-color: 220 40% 5%;
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4), 0 4px 6px -4px rgba(0,0,0,0.4);
+  
+  --accent-blue-light: rgba(96, 165, 250, 0.1);
+  --accent-green-light: rgba(74, 222, 128, 0.1);
+  --accent-purple-light: rgba(196, 181, 253, 0.1);
+  --accent-orange-light: rgba(251, 146, 60, 0.1);
+  --accent-yellow-light: rgba(250, 204, 21, 0.1);
+
+  /* Gantt Task Colors */
+  --gantt-task-pending-bg: #1e40af;
+  --gantt-task-pending-border: #3b82f6;
+  --gantt-task-pending-text: #dbeafe;
+  --gantt-task-in-process-bg: #166534;
+  --gantt-task-in-process-border: #4ade80;
+  --gantt-task-in-process-text: #dcfce7;
+  --gantt-task-finished-bg: #374151;
+  --gantt-task-finished-border: #6b7280;
+  --gantt-task-finished-text: #d1d5db;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sidebar-transition {
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-shadow {
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.card-shadow:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.chart-gradient {
+  fill: url(#chartGradient);
+}
+[data-theme="dark"] .chart-gradient {
+  fill: url(#chartGradientDark);
+}
+
+.logo-container {
+  border-radius: 9999px;
+  padding: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px 2px rgba(167, 199, 231, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+[data-theme="light"] .logo-container {
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 15px 2px rgba(60, 130, 246, 0.2);
+}
+
+.logo-container img {
+  border-radius: 9999px;
+}
+
+.gantt-task-bar {
+  border: 1px solid;
+}
+.gantt-task-pending {
+  background-image: linear-gradient(to right, var(--gantt-task-pending-bg), var(--gantt-task-pending-border));
+  border-color: var(--gantt-task-pending-border);
+  color: var(--gantt-task-pending-text);
+}
+.gantt-task-in-process {
+  background-image: linear-gradient(to right, var(--gantt-task-in-process-bg), var(--gantt-task-in-process-border));
+  border-color: var(--gantt-task-in-process-border);
+  color: var(--gantt-task-in-process-text);
+}
+.gantt-task-finished {
+  background-image: linear-gradient(to right, var(--gantt-task-finished-bg), var(--gantt-task-finished-border));
+  border-color: var(--gantt-task-finished-border);
+  color: var(--gantt-task-finished-text);
+}
+
+.gantt-table-row {
+  border-color: var(--border);
+}
+.gantt-table-row:nth-child(even) {
+  background-color: var(--bg-tertiary);
+}
+.gantt-table-row:hover {
+  background-color: var(--accent-blue-light);
+}
+
+.gantt-header-cell {
+  border-color: var(--border-accent);
+  background-color: var(--bg-secondary);
+}
+[data-theme="dark"] .gantt-header-cell {
+  background-color: var(--bg-tertiary);
+}
+
+.gantt-header-today {
+  background-color: var(--accent-blue-light);
+  color: var(--accent-blue);
+}
+[data-theme="dark"] .gantt-header-today {
+  background-color: var(--accent-blue);
+  color: white;
+}
