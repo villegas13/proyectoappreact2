@@ -7,7 +7,7 @@
 :root {
   /* Light theme colors */
   --bg-primary: #E0E0E0; /* Changed to light grey */
-  --bg-secondary: #FFFFFF; /* Kept white for cards/forms */
+  --bg-secondary:#FFFFFF;
   --bg-sidebar: #FFFFFF;
   --bg-tertiary: #F3F4F6;
   --text-primary: #212121; /* Changed to dark grey */
@@ -47,8 +47,8 @@
 [data-theme="dark"] {
   /* Dark theme colors */
   --bg-primary: #042863;
-  --bg-secondary: #0B3C8A;
-  --bg-sidebar: #042863;
+  --bg-secondary: #021d49;
+  --bg-sidebar: #000b1b;
   --bg-tertiary: #1E3A8A;
   --text-primary: #F9FAFB;
   --text-secondary: #CBD5E1;
@@ -107,6 +107,7 @@ body {
   box-shadow: var(--shadow);
   transition: all 0.3s ease;
 }
+
 
 .card-shadow:hover {
   transform: translateY(-2px);

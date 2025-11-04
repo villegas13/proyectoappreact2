@@ -218,10 +218,14 @@ const ProductForm = ({
         })} />
         </div>
       </div>
-      <ImageUploader label="Imagen del Producto" imageUrl={imageUrl.preview} onImageChange={handleImageChange(setImageUrl)} onImageRemove={() => setImageUrl({
-      file: null,
-      preview: null
-    })} />
+       <div style={{ height: '190px', overflow: 'hidden' }}>
+        <ImageUploader
+          label="Imagen del Producto"
+          imageUrl={imageUrl.preview}
+          onImageChange={handleImageChange(setImageUrl)}
+          onImageRemove={() => setImageUrl({ file: null, preview: null })}
+        />
+      </div>
       <DialogFooter>
         <Button variant="outline" onClick={closeModal}>Cancelar</Button>
         <Button type="submit" disabled={isSubmitting}>
@@ -360,20 +364,48 @@ const ProductsView = () => {
         </Table>
       </div>
 
+
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-lg">
-          <DialogHeader>
-            <DialogTitle>{selectedProduct ? 'Editar Producto' : 'Crear Nuevo Producto'}</DialogTitle>
-            <DialogDescription>
-              {selectedProduct ? 'Actualiza los detalles del producto.' : 'Completa el formulario para crear un nuevo producto.'}
-            </DialogDescription>
+        <DialogContent
+          className="sm:max-w-4xl max-w-none w-[90vw] mx-auto p-6"
+          style={{
+            // Asegura que el modal ocupe el ancho solicitado y se centre
+            width: '80vw',
+            maxWidth: '1000px',            
+            minHeight: '560px',
+            maxHeight: '90vh',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            overflowY: 'auto'
+          }}
+        >
+          <DialogHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex items-start gap-4">
+              <DialogTitle className="text-lg font-semibold">
+                {selectedProduct ? 'Editar Producto' : 'Crear Nuevo Producto'}
+              </DialogTitle>
+              {/* Mostrar la descripción junto al título cuando se edita */}
+              {selectedProduct && (
+                <DialogDescription className="text-sm text-gray-600 dark:text-gray-300">
+                  Actualiza los detalles del producto.
+                </DialogDescription>
+              )}
+            </div>
+            {/* Si no hay producto seleccionado mostramos la descripción normal a la derecha */}
+            {!selectedProduct && (
+              <DialogDescription className="text-sm text-gray-600 dark:text-gray-300">
+                Completa el formulario para crear un nuevo producto.
+              </DialogDescription>
+            )}
           </DialogHeader>
           <ProductForm product={selectedProduct} onSuccess={() => {
-          fetchProducts();
-          setIsDialogOpen(false);
-        }} closeModal={() => setIsDialogOpen(false)} />
+            fetchProducts();
+            setIsDialogOpen(false);
+          }} closeModal={() => setIsDialogOpen(false)} />
         </DialogContent>
       </Dialog>
+
+      
     </motion.div>;
 };
 export default ProductsView;
